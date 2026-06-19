@@ -1,26 +1,419 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
+
+/* ─────────────────────────────────────────────
+   Ihsan: Voice of Truth — Design Tokens
+   Palette: user's gray scale + green/gold brand
+   ───────────────────────────────────────────── */
 
 @theme inline {
+  /* Fonts */
+  --font-sans: var(--font-outfit);
+  --font-arabic: var(--font-amiri);
+  --font-tamil: var(--font-noto-sans-tamil);
+  --font-mono: ui-monospace, monospace;
+  --font-heading: var(--font-outfit);
+
+  /* Brand colors mapped to Tailwind utilities */
+  --color-brand-green: var(--brand-green);
+  --color-brand-green-light: var(--brand-green-light);
+  --color-brand-gold: var(--brand-gold);
+  --color-brand-gold-light: var(--brand-gold-light);
+
+  /* Gray scale (user's palette) */
+  --color-gray-50: #f8f9fa;
+  --color-gray-100: #e9ecef;
+  --color-gray-200: #dee2e6;
+  --color-gray-300: #ced4da;
+  --color-gray-400: #adb5bd;
+  --color-gray-500: #6c757d;
+  --color-gray-600: #495057;
+  --color-gray-700: #343a40;
+  --color-gray-800: #212529;
+
+  /* shadcn tokens */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ─── Light mode ─── */
+:root {
+  --brand-green: #1a3c34;
+  --brand-green-light: #2d6a5e;
+  --brand-gold: #c9a84c;
+  --brand-gold-light: #e2c97e;
+
+  --background: #f8f9fa;
+  --foreground: #212529;
+  --card: #ffffff;
+  --card-foreground: #212529;
+  --popover: #ffffff;
+  --popover-foreground: #212529;
+  --primary: #1a3c34;
+  --primary-foreground: #f8f9fa;
+  --secondary: #e9ecef;
+  --secondary-foreground: #343a40;
+  --muted: #e9ecef;
+  --muted-foreground: #6c757d;
+  --accent: #c9a84c;
+  --accent-foreground: #212529;
+  --destructive: #dc2626;
+  --border: #dee2e6;
+  --input: #dee2e6;
+  --ring: #1a3c34;
+  --radius: 0.625rem;
+  --sidebar: #f8f9fa;
+  --sidebar-foreground: #212529;
+  --sidebar-primary: #1a3c34;
+  --sidebar-primary-foreground: #f8f9fa;
+  --sidebar-accent: #e9ecef;
+  --sidebar-accent-foreground: #212529;
+  --sidebar-border: #dee2e6;
+  --sidebar-ring: #1a3c34;
+  --chart-1: #1a3c34;
+  --chart-2: #c9a84c;
+  --chart-3: #6c757d;
+  --chart-4: #343a40;
+  --chart-5: #adb5bd;
+}
+
+/* ─── Dark mode ─── */
+.dark {
+  --background: #212529;
+  --foreground: #f8f9fa;
+  --card: #343a40;
+  --card-foreground: #f8f9fa;
+  --popover: #343a40;
+  --popover-foreground: #f8f9fa;
+  --primary: #c9a84c;
+  --primary-foreground: #212529;
+  --secondary: #343a40;
+  --secondary-foreground: #e9ecef;
+  --muted: #343a40;
+  --muted-foreground: #adb5bd;
+  --accent: #c9a84c;
+  --accent-foreground: #212529;
+  --destructive: #ef4444;
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.12);
+  --ring: #c9a84c;
+  --sidebar: #343a40;
+  --sidebar-foreground: #f8f9fa;
+  --sidebar-primary: #c9a84c;
+  --sidebar-primary-foreground: #212529;
+  --sidebar-accent: #495057;
+  --sidebar-accent-foreground: #f8f9fa;
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+  --sidebar-ring: #c9a84c;
+  --chart-1: #c9a84c;
+  --chart-2: #2d6a5e;
+  --chart-3: #adb5bd;
+  --chart-4: #6c757d;
+  --chart-5: #495057;
+}
+
+/* ─── Base layer ─── */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    @apply scroll-smooth;
+    font-feature-settings:
+      "kern" 1,
+      "liga" 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    min-height: 100dvh;
+  }
+
+  /* Arabic text — RTL, Amiri font */
+  .arabic {
+    font-family: var(--font-arabic), "Amiri", "Scheherazade New", serif;
+    direction: rtl;
+    text-align: right;
+    font-size: 1.5em;
+    line-height: 2;
+    letter-spacing: 0.01em;
+  }
+
+  /* Tamil text */
+  .tamil {
+    font-family: var(--font-tamil), "Noto Sans Tamil", "Hind Madurai", sans-serif;
+    line-height: 1.8;
+  }
+
+  /* Focus styles */
+  :focus-visible {
+    @apply outline-ring rounded-sm outline-2 outline-offset-2;
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ─── Utility layer ─── */
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.4s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* ─── Glass morphism ─── */
+@layer utilities {
+  .glass-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  }
+}
+@layer utilities {
+  .dark .glass-card {
+    background: rgba(52, 58, 64, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+}
+
+@layer utilities {
+  .gradient-border {
+    position: relative;
+    z-index: 0;
+  }
+  .gradient-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      rgba(201, 168, 76, 0.6),
+      transparent 40%,
+      rgba(26, 60, 52, 0.4)
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    z-index: -1;
+  }
+  .gradient-border:hover::before {
+    opacity: 1;
+  }
+}
+
+@layer utilities {
+  .shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  .shimmer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      transparent 40%,
+      rgba(255, 255, 255, 0.06) 50%,
+      transparent 60%
+    );
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+  }
+  .shimmer:hover::after {
+    transform: translateX(100%);
+  }
+}
+
+@layer utilities {
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #c9a84c, #e2c97e 50%, #c9a84c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .bg-hero-pattern {
+    background-image:
+      radial-gradient(ellipse at 20% 50%, rgba(201, 168, 76, 0.06) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(45, 106, 94, 0.08) 0%, transparent 60%);
+  }
+}
+
+/* ─── Scroll reveal ─── */
+@layer utilities {
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 {
+    transition-delay: 80ms;
+  }
+  .reveal-delay-2 {
+    transition-delay: 160ms;
+  }
+  .reveal-delay-3 {
+    transition-delay: 240ms;
+  }
+  .reveal-delay-4 {
+    transition-delay: 320ms;
+  }
+  .reveal-delay-5 {
+    transition-delay: 400ms;
+  }
+}
+
+/* ─── Float animation ─── */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-16px) rotate(3deg);
+  }
+}
+@keyframes floatAlt {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(-2deg);
+  }
+}
+.animate-float {
+  animation: float 10s ease-in-out infinite;
+}
+.animate-float-alt {
+  animation: floatAlt 14s ease-in-out infinite;
+  animation-delay: -6s;
+}
+
+/* ─── Page enter ─── */
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+main > * {
+  animation: pageEnter 0.5s ease-out both;
+}
+
+/* ─── Custom scrollbar ─── */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(201, 168, 76, 0.3);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(201, 168, 76, 0.5);
+}
+
+/* ─── Arabic display font ─── */
+.arabic-display {
+  font-family: var(--font-arabic), "Amiri", serif;
+  direction: rtl;
+  text-align: center;
+  line-height: 2.2;
+  letter-spacing: 0.01em;
 }
