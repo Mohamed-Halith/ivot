@@ -56,13 +56,16 @@ export function Header() {
 
         {/* Right */}
         <div className="flex items-center gap-1">
-          <Link
-            href="/search"
-            aria-label="Search"
-            className="text-muted-foreground hover:text-foreground hover:bg-muted/60 inline-flex h-9 w-9 items-center justify-center rounded-lg transition-all"
+          <button
+            onClick={() => window.dispatchEvent(new CustomEvent("open-cmd-palette"))}
+            aria-label="Open search"
+            className="text-muted-foreground hover:text-foreground hover:bg-muted/60 inline-flex h-9 items-center justify-center gap-1.5 rounded-lg px-2 transition-all"
           >
             <Search className="h-[17px] w-[17px]" />
-          </Link>
+            <span className="text-muted-foreground/50 hidden text-[10px] font-medium sm:inline">
+              ⌘K
+            </span>
+          </button>
           <ThemeToggle />
           <button
             className="text-muted-foreground hover:text-foreground hover:bg-muted/60 inline-flex h-9 w-9 items-center justify-center rounded-lg transition-all md:hidden"
