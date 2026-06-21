@@ -1,28 +1,39 @@
 "use client";
-import { useInView } from "@/hooks/useInView";
+
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface AnimatedSectionProps {
   children: React.ReactNode;
   className?: string;
-  delay?: string;
-  as?: "div" | "section";
+  delay?: number;
+  amount?: number;
+  direction?: "up" | "down" | "left" | "right" | "none";
 }
 
 export function AnimatedSection({
   children,
   className,
-  delay,
-  as: Tag = "div",
+  delay = 0,
+  amount = 0.12,
+  direction = "up",
 }: AnimatedSectionProps) {
-  const { ref, inView } = useInView();
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, amount });
+
+  const yOffset = direction === "up" ? 28 : direction === "down" ? -28 : 0;
+  const xOffset = direction === "left" ? 28 : direction === "right" ? -28 : 0;
 
   return (
-    <Tag
-      ref={ref as React.RefObject<HTMLDivElement & HTMLElement>}
-      className={cn("reveal", inView && "in-view", delay, className)}
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, x: xOffset, y: yOffset, filter: "blur(4px)" }}
+      animate={inView ? { opacity: 1, x: 0, y: 0, filter: "blur(0px)" } : {}}
+      transition={{ duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] }}
+      className={cn(className)}
     >
       {children}
-    </Tag>
+    </motion.div>
   );
 }
