@@ -56,12 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${outfit.variable} ${amiri.variable} ${notoSansTamil.variable} h-full`}
     >
       <body className="flex min-h-full flex-col antialiased" suppressHydrationWarning>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           {children}
           <Toaster richColors position="bottom-right" />
         </ThemeProvider>

@@ -1,6 +1,7 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { CommandPalette } from "@/components/shared/CommandPalette";
+import { SmoothScroll } from "@/components/shared/SmoothScroll";
 import { getSiteSettings } from "@/sanity/queries/settings";
 import { getSearchIndex } from "@/sanity/queries/reminders";
 import { getAllTopics } from "@/sanity/queries/topics";
@@ -14,6 +15,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
 
   return (
     <>
+      <SmoothScroll />
       <Header />
       <main id="main-content" className="flex-1">
         {children}
