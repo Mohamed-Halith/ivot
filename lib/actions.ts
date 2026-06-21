@@ -4,8 +4,6 @@ import { z } from "zod";
 import { Resend } from "resend";
 import crypto from "crypto";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 const subscribeSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
   name: z.string().max(100).optional(),
@@ -35,6 +33,7 @@ export async function subscribeAction(formData: FormData): Promise<SubscribeResu
   const confirmUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/api/confirm?token=${token}&email=${encodeURIComponent(email)}`;
 
   try {
+    const resend = new Resend(process.env.RESEND_API_KEY);
     // Store pending subscriber in Sanity
     const { writeClient } = await import("@/sanity/lib/client");
     await writeClient.create({
